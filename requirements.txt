@@ -1,0 +1,2 @@
+python-dotenv
+Flask-Mailing==0.2.3
