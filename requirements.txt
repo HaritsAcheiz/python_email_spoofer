@@ -1,2 +1,3 @@
 python-dotenv
 Flask-Mailing==0.2.3
+Flask-WTF==1.2.1

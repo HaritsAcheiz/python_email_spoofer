@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2> Input </h2>
+<form action="" method="post">
+    <p>
+        {{form.from_user.label}} <br>
+        {{form.from_user(size=30)}}
+    </p>
+    <p>
+        {{form.from_address.label}} <br>
+        {{form.from_address(size=30)}}
+    </p>
+    <p>
+        {{form.to_address.label}} <br>
+        {{form.to_address(size=30)}}
+    </p>
+    <p>
+        {{form.subject.label}} <br>
+        {{form.subject(size=30)}}
+    </p>
+    <p>
+        {{form.message.label}} <br>
+        {{form.message(size=30)}}
+    </p>
+    <p>
+        {{form.submit()}}
+    </p>
+</form>
+
+{% endblock %}
