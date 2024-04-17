@@ -77,5 +77,5 @@ def input_form():
     return render_template('forms.html', form=form)
 
 
-if __name__ == '__main__':
-    app.run(debug=True)
+# if __name__ == '__main__':
+#     app.run(debug=True)
