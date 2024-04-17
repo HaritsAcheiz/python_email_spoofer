@@ -13,14 +13,14 @@ mail = Mail()
 
 def create_app():
     app = Flask(__name__)
-    app.config['MAIL_USERNAME'] = os.getenv('GMAIL_USER')
-    app.config['MAIL_PASSWORD'] = os.getenv('GOOGLE_APP_PASSWORD')
-    app.config['MAIL_PORT'] = 587
-    app.config['MAIL_SERVER'] = "smtp.gmail.com"
-    app.config['MAIL_USE_TLS'] = True
-    app.config['MAIL_USE_SSL'] = False
+    # app.config['MAIL_USERNAME'] = os.getenv('GMAIL_USER')
+    # app.config['MAIL_PASSWORD'] = os.getenv('GOOGLE_APP_PASSWORD')
+    # app.config['MAIL_PORT'] = 587
+    # app.config['MAIL_SERVER'] = "smtp.gmail.com"
+    # app.config['MAIL_USE_TLS'] = True
+    # app.config['MAIL_USE_SSL'] = False
     app.config['SECRET_KEY'] = 'rahasia'
-    mail.init_app(app)
+    # mail.init_app(app)
 
     return app
 
@@ -39,17 +39,25 @@ def email(from_user, from_address, to_address, subject, message):
     body = message
     msg.attach(MIMEText(body, 'plain'))
 
-    smtp_server = smtplib.SMTP('smtp.gmail.com', 587)
+    smtp_server = smtplib.SMTP('smtpout.secureserver.net', 587)
     smtp_server.starttls()
-    smtp_server.login(os.getenv('GMAIL_USER'), os.getenv('GOOGLE_APP_PASSWORD'))
+    smtp_server.login(os.getenv('GODADDY_USER'), os.getenv('GODADDY_PASS'))
     text = msg.as_string()
     smtp_server.sendmail(from_address, to_address, text)
     smtp_server.quit()
 
+    # content = f"From: {from_user} <{from_address}>\nTo: <{to_address}>\nSubject: {subject}\n\n{message}"
+    #
+    # server = smtplib.SMTP("email-smtp.us-west-1.amazonaws.com", 587)
+    # server.starttls()
+    # server.login(os.getenv('AWS_USER'), os.getenv('AWS_PASS'))
+    # server.sendmail(from_user, to_address, content.encode())
+    # server.close()
+
     # return jsonify(status_code=200, content={"message": "email has been sent"})
     return render_template('succeed.html')
 
-@app.route("/", methods=['GET', 'POST'])
+@app.route("/forms", methods=['GET', 'POST'])
 def input_form():
     form = InputForm()
     if form.is_submitted():
